@@ -15,6 +15,28 @@ import router from './router'
 import '@/icons' // icon  引入所有的svg图片
 import '@/permission' // permission control  引入token校验以及权限相关
 
+// 全局注册的组件
+import CategorySelector from '@/components/CategorySelector'
+import HintButton from '@/components/HintButton'
+Vue.component('CategorySelector', CategorySelector)
+Vue.component('HintButton', HintButton)
+
+// import { default as trademark } from '@/api/product/tardemark'
+// import trademark from '@/api/product/tardemark'
+// Vue.prototype.$API = trademark
+// this.$API.addOrUpdate()
+// 这样的方式，只能把trademark相关的api拿到，也就是说$API就只有trademark的接口
+// 后期我们还要写attr相关的api，$API内部就没有attr相关的接口
+
+import * as API from '@/api'
+
+Vue.prototype.$API = API
+// {
+//   trademark,
+//   attr
+// }
+// this.$API.trademark.addOrUPdate
+
 /**
  * If you don't want to use mock-server
  * you want to use MockJs for mock api
