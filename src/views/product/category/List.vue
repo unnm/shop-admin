@@ -11,21 +11,18 @@
       :row-class-name="tableRowClassName"
     >
       <!--
-      lazy代表是否懒加载
+      lazy 代表是否懒加载
       :load="load"  懒加载的回调
-      :tree-props 固定写法  是否是树型 前面有没有>
-      :row-key="getRowKey"  设置表格当中每行的标识数据key
-      :row-class-name="tableRowClassName" 为我们的行设置单独的样式
-    -->
+      :tree-props 固定写法  是否是树型解构，即前面有没有>
+      :row-key="getRowKey" 设置表格当中每行的标识数据key，可以是字符串或函数
+      :row-class-name="tableRowClassName" 为表格中的某一行添加class，用来为该为行设置单独的样式
+      -->
       <el-table-column prop="id" label="分类ID" align="center" width="150" />
-
       <el-table-column prop="name" label="分类名称" sortable />
-
       <el-table-column label="操作" width="250" align="center">
         <template slot="header" slot-scope="scope">
           <el-input placeholder="按Enter键添加一级分类" />
         </template>
-
         <template slot-scope="scope">
           <HintButton
             title="添加子分类"
@@ -67,9 +64,7 @@
     },
 
     methods: {
-      /*
-          获取一级分类列表显示
-          */
+      /* 获取一级分类列表显示 */
       getCategory1() {
         this.$API.category.getCategory1().then((result) => {
           const categorys = result.data
@@ -81,9 +76,7 @@
         })
       },
 
-      /*
-          异步加载下一级分类列表显示
-          */
+      /* 异步加载下一级分类列表显示 */
       async load(row, treeNode, resolve) {
         // console.log('---', row, treeNode)
         if (row.level === 1) {
@@ -95,9 +88,7 @@
         }
       },
 
-      /*
-          获取二级分类列表, 返回包含数据的promise对象
-          */
+      /* 获取二级分类列表, 返回包含数据的promise对象 */
       getCategory2(row) {
         return this.$API.category.getCategory2(row.id).then((result) => {
           const categorys2 = result.data
@@ -116,9 +107,7 @@
         })
       },
 
-      /*
-          获取三级分类列表, 返回包含数据的promise对象
-          */
+      /* 获取三级分类列表, 返回包含数据的promise对象 */
       async getCategory3(row) {
         const result = await this.$API.category.getCategory3(row.id)
         const categorys3 = result.data
@@ -130,16 +119,12 @@
         }
       },
 
-      /*
-          动态确定当前行的唯一key
-          */
+      /* 动态确定当前行的唯一key */
       getRowKey(row) {
         return row.level + '-' + row.id
       },
 
-      /*
-          返回二级分类列表的类名
-          */
+      /* 返回二级分类列表的类名 */
       tableRowClassName({ row, rowIndex }) {
         if (row.level === 2) {
           return 'level2-row'
