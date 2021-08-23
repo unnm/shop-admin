@@ -36,7 +36,7 @@ export default {
   },
 
   // 获取所有的品牌列表而不是分页列表
-  // /admin/product/baseTrademark/getTrademarkList        get
+  // GET  /admin/product/baseTrademark/getTrademarkList
   getList() {
     return request.get('/admin/product/baseTrademark/getTrademarkList')
   }

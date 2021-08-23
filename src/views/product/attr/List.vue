@@ -303,8 +303,8 @@
       //   age:33
       // }
 
-      // obj.aa-bb //错的  aa-bb名字不合法
-      // obj["aa-bb"] //对的
+      // obj.aa-bb  //错的  aa-bb名字不合法
+      // obj["aa-bb"]  //对的
 
       // var xx = 'username'
       // // obj.xx //错的  相当于是xx在obj里面是属性
