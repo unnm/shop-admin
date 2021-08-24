@@ -5,7 +5,7 @@
       <CategorySelector
         @handlerCategory="handlerCategory"
         :isShowList="isShowList"
-      ></CategorySelector>
+      />
     </el-card>
     <el-card style="margin-top: 20px">
       <!-- spu的列表页 -->
@@ -15,15 +15,17 @@
           icon="el-icon-plus"
           :disabled="!category3Id"
           @click="showAddSpuForm"
-          >添加SPU</el-button
-        >
+          >添加SPU
+        </el-button>
         <el-table :data="spuList" border style="width: 100%">
-          <el-table-column label="序号" type="index" align="center" width="80">
-          </el-table-column>
-          <el-table-column prop="spuName" label="SPU名称" width="width">
-          </el-table-column>
-          <el-table-column prop="description" label="SPU描述" width="width">
-          </el-table-column>
+          <el-table-column
+            label="序号"
+            type="index"
+            align="center"
+            width="80"
+          />
+          <el-table-column prop="spuName" label="SPU名称" width="width" />
+          <el-table-column prop="description" label="SPU描述" width="width" />
           <el-table-column prop="prop" label="操作" width="width">
             <template slot-scope="{ row, $index }">
               <HintButton
@@ -32,21 +34,21 @@
                 size="mini"
                 title="添加SKU"
                 @click="showAddSkuForm(row)"
-              ></HintButton>
+              />
               <HintButton
                 type="warning"
                 icon="el-icon-edit"
                 size="mini"
                 title="修改SPU"
                 @click="showUpdateSpuForm(row)"
-              ></HintButton>
+              />
               <HintButton
                 type="info"
                 icon="el-icon-info"
                 size="mini"
                 title="查看SPU的SKU列表"
                 @click="showSkuList(row)"
-              ></HintButton>
+              />
 
               <el-popconfirm
                 :title="`你确定删除${row.spuName}吗？`"
@@ -58,7 +60,7 @@
                   icon="el-icon-delete"
                   size="mini"
                   title="删除SPU"
-                ></HintButton>
+                />
               </el-popconfirm>
             </template>
           </el-table-column>
@@ -76,8 +78,7 @@
           @current-change="getSpuList"
           @size-change="handleSizeChange"
           layout=" prev, pager, next, jumper,->,sizes,total"
-        >
-        </el-pagination>
+        />
       </div>
 
       <!-- spu的添加和修改页面 -->
@@ -90,16 +91,12 @@
         ref="spu"
         @backSuccess="backSuccess"
         @cancelSuccess="cancelSuccess"
-      ></SpuForm>
+      />
 
       <!-- sku的添加页面 -->
       <!-- <div>
       </div> -->
-      <SkuForm
-        v-show="isShowSkuForm"
-        ref="sku"
-        :visible.sync="isShowSkuForm"
-      ></SkuForm>
+      <SkuForm v-show="isShowSkuForm" ref="sku" :visible.sync="isShowSkuForm" />
     </el-card>
 
     <el-dialog
@@ -109,12 +106,9 @@
       width="width"
     >
       <el-table v-loading="loading" :data="skuList" style="width: 100%">
-        <el-table-column prop="skuName" label="名称" width="width">
-        </el-table-column>
-        <el-table-column prop="price" label="价格" width="width">
-        </el-table-column>
-        <el-table-column prop="weight" label="重量" width="width">
-        </el-table-column>
+        <el-table-column prop="skuName" label="名称" width="width" />
+        <el-table-column prop="price" label="价格" width="width" />
+        <el-table-column prop="weight" label="重量" width="width" />
         <el-table-column prop="prop" label="默认图片" width="width">
           <template slot-scope="{ row, $index }">
             <img

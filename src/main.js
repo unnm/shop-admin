@@ -14,6 +14,7 @@ import router from './router'
 
 import '@/icons' // icon  引入所有的svg图片
 import '@/permission' // permission control  引入token校验以及权限相关
+import '@/plugins/vcharts' // 引入vcharts相关配置
 
 // 全局注册的组件
 import CategorySelector from '@/components/CategorySelector'

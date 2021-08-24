@@ -1,19 +1,15 @@
 <template>
   <el-card class="sku-list">
-    <el-table border stripe :data="skuList" v-loading="loading">
+    <el-table v-loading="loading" border stripe :data="skuList">
       <el-table-column
         type="index"
         label="序号"
         width="80"
         align="center"
         row-key="id"
-      >
-      </el-table-column>
-
+      />
       <el-table-column prop="skuName" label="名称" />
-
       <el-table-column prop="skuDesc" label="描述" />
-
       <el-table-column label="默认图片" width="150" align="center">
         <template slot-scope="{ row }">
           <div class="info">
@@ -27,11 +23,8 @@
           </div>
         </template>
       </el-table-column>
-
       <el-table-column prop="weight" label="重量(KG)" />
-
       <el-table-column prop="price" label="价格(元)" width="80" />
-
       <el-table-column label="操作" width="250" align="center">
         <template slot-scope="{ row }">
           <HintButton
@@ -42,7 +35,6 @@
             icon="el-icon-top"
             @click="onSale(row.id)"
           />
-
           <HintButton
             v-if="row.isSale == 1"
             title="下架"
@@ -51,7 +43,6 @@
             icon="el-icon-bottom"
             @click="cancelSale(row.id)"
           />
-
           <HintButton
             title="修改"
             type="primary"
@@ -59,7 +50,6 @@
             icon="el-icon-edit"
             @click="toUpdateSku(row.id)"
           />
-
           <HintButton
             title="查看详情"
             type="info"
@@ -67,19 +57,18 @@
             icon="el-icon-info"
             @click="showSkuInfo(row.id)"
           />
-
           <el-popconfirm
             :title="`确定删除 ${row.skuName} 吗`"
             @onConfirm="deleteSku(row.id)"
           >
             <hint-button
-              style="margin-left: 10px"
               slot="reference"
+              style="margin-left: 10px"
               type="danger"
               size="mini"
               icon="el-icon-delete"
               title="删除"
-            ></hint-button>
+            />
           </el-popconfirm>
         </template>
       </el-table-column>
@@ -165,7 +154,7 @@
     },
 
     methods: {
-      //修改sku 没有接口没法做
+      // 修改sku 没有接口没法做
       toUpdateSku() {
         this.$message.info('正在开发中...')
       },
@@ -176,9 +165,7 @@
         this.skuInfo = result.data
       },
 
-      /*
-      异步获取指定页码的sku列表
-      */
+      /* 异步获取指定页码的sku列表 */
       async getSkuList(page = 1) {
         this.page = page
         this.loading = true
@@ -188,9 +175,7 @@
         this.loading = false
       },
 
-      /*
-      对指定SKU进行上架的请求
-      */
+      /* 对指定SKU进行上架的请求 */
       onSale(skuId) {
         this.$API.sku.onSale(skuId).then((result) => {
           this.$message({
@@ -201,9 +186,7 @@
         })
       },
 
-      /*
-      对指定SKU进行下架的请求
-      */
+      /* 对指定SKU进行下架的请求 */
       cancelSale(skuId) {
         this.$API.sku.cancelSale(skuId).then((result) => {
           this.$message({
@@ -214,17 +197,13 @@
         })
       },
 
-      /*
-      当页码发生改变自动调用
-      */
+      /* 当页码发生改变自动调用 */
       changeSize(size) {
         this.limit = size
         this.getSkuList(1)
       },
 
-      /*
-      删除SKU
-      */
+      /* 删除SKU */
       async deleteSku(skuId) {
         try {
           await this.$API.sku.remove(skuId)
@@ -243,7 +222,7 @@
 
 <style lang="scss">
   /* 不加scoped, 可以影响子组件 */
-  // 添加.sku-list的目的是把所写的样式限定在本组件和本组件的子组件内部,而且不受scoped约束
+  // 添加.sku-list的目的是把所写的样式限定在本组件和本组件的子组件内部，而且不受scoped约束
   // .sku-list {
   //   .el-carousel__indicator {
   //     button {
@@ -263,18 +242,18 @@
 </style>
 
 <style lang="scss" scoped>
-  // scoped 我们当前组件的样式就被限制在本组件内部，无法影响其它组件
+  // 添加scoped，当前组件的样式就被限制在本组件内部，无法影响其它组件
   // 深度作用选择器
-  // scoped本身把样式限制在本组件和子组件的根元素，如果样式是作用在子组件非根元素身上，就不生效
-  // 深度作用选择器的作用就是让scoped内部的样式也能作用于子组件非根元素的元素
+  //   scoped本身把样式限制在本组件和子组件的根元素，如果样式是作用在子组件非根元素身上，就不生效
+  //   深度作用选择器的作用：就是让scoped内部的样式也能作用于子组件非根元素的元素
 
   /*深度作用选择器的写法    ********************
-    如果是原生css 深度作用选择器
-        父元素 >>> 选中的元素
-    如果是less  scss 预编译的css文件
-        /deep/ 用于less
-        ::v-deep  都行
-        */
+                如果是原生css 深度作用选择器
+                  父元素 >>> 选中的元素
+                如果是less  scss 预编译的css文件
+                  /deep/ 用于less
+                  ::v-deep  都行
+              */
   .sku-list {
     .el-row {
       height: 40px;

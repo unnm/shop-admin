@@ -94,6 +94,12 @@ export const constantRoutes = [
         component: () => import('@/views/product/category/List'),
         name: 'Category',
         meta: { title: '分类管理' }
+      },
+      {
+        path: 'scoped/list',
+        component: () => import('@/views/product/scoped/List'),
+        name: 'Scoped',
+        meta: { title: 'scoped测试' }
       }
     ]
   },
