@@ -32,10 +32,10 @@
   export default {
     components: { SidebarItem, Logo },
     computed: {
-      ...mapGetters(['sidebar']),
-      routes() {
-        return this.$router.options.routes
-      },
+      ...mapGetters(['sidebar', 'routes']),
+      // routes() {
+      //   return this.$router.options.routes  // 这里拿到的是常量路由
+      // },
       activeMenu() {
         const route = this.$route
         const { meta, path } = route

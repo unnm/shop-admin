@@ -1,12 +1,10 @@
 <template>
-  <div>
-    测试2222
-  </div>
+  <div>测试2222</div>
 </template>
 
 <script>
-export default {
-  name: '',
-}
+  export default {
+    name: ''
+  }
 </script>
 

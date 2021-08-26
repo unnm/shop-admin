@@ -16,6 +16,9 @@ import '@/icons' // icon  引入所有的svg图片
 import '@/permission' // permission control  引入token校验以及权限相关
 import '@/plugins/vcharts' // 引入vcharts相关配置
 
+import { hasBtnPermission } from '@/utils/permission' // 引入按钮权限检测函数
+Vue.prototype.$hasBP = hasBtnPermission // 把检测按钮权限的函数挂载Vue的原型上
+
 // 全局注册的组件
 import CategorySelector from '@/components/CategorySelector'
 import HintButton from '@/components/HintButton'
@@ -30,7 +33,6 @@ Vue.component('HintButton', HintButton)
 // 后期我们还要写attr相关的api，$API内部就没有attr相关的接口
 
 import * as API from '@/api'
-
 Vue.prototype.$API = API
 // {
 //   trademark,
